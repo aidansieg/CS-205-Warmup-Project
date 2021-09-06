@@ -1,0 +1,47 @@
+﻿number,start,end,party,vice
+1,1789,1797,Federalist,John Adams
+2,1797,1801,Federalist,Thomas Jefferson
+3,1801,1809,Democratic Republican,Aaron Burr
+4,1809,1817,Democratic Republican,George Clinton
+5,1817,1825,Democratic Republican,Daniel D. Tompkins
+6,1825,1829,Democratic Republican,John C. Calhoun
+7,1829,1837,Democratic,John C. Calhoun
+8,1837,1841,Democratic,Richard Mentor Johnson
+9,1841,1841,Whig,John Tyler
+10,1841,1845,Whig,Office vacant
+11,1845,1849,Democratic,George M. Dallas
+12,1849,1850,Whig,Millard Fillmore
+13,1850,1853,Whig,Office vacant
+14,1853,1857,Democratic,William R. King
+15,1857,1861,Democratic,John C. Breckinridge
+16,1861,1865,Republican,Hannibal Hamlin
+17,1865,1869,Democratic Union,Office vacant
+18,1869,1877,Republican,Schuyler Colfax
+19,1877,1881,Republican,William A. Wheeler
+20,1881,1881,Republican,Chester A. Arthur
+21,1881,1885,Republican,Office vacant
+22,1885,1889,Democratic,Thomas A. Hendricks
+23,1889,1893,Republican,Levi P. Morton
+24,1893,1897,Democratic,Adlai Stevenson
+25,1897,1901,Republican,Garret Hobart
+26,1901,1909,Republican,Office vacant
+27,1909,1913,Republican,James S. Sherman
+28,1913,1931,Democratic,Thomas R. Marshall
+29,1921,1923,Republican,Calvin Coolidge
+30,1923,1929,Republican,Office vacant
+31,1929,1933,Republican,Charles Curtis
+32,1933,1945,Democratic,John Nance Garner
+33,1945,1953,Democratic,Office vacant
+34,1953,1961,Republican,Richard Nixon
+35,1961,1963,Democratic,Lyndon B. Johnson
+36,1963,1969,Democratic,Office vacant
+37,1969,1974,Republican,Spiro Agnew
+38,1974,1977,Republican,Office vacant
+39,1977,1981,Democratic,Walter Mondale
+40,1981,1989,Republican,George H. W. Bush
+41,1989,1993,Republican,Dan Quayle
+42,1993,2001,Democratic,Al Gore
+43,2001,2009,Republican,Dick Cheney
+44,2009,2017,Democratic,Joe Biden
+45,2017,2021,Republican,Mike Pence
+46,2021,present,Democratic,Kamala Harris
