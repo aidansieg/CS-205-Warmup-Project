@@ -1,5 +1,5 @@
 from data import load_data
-import sqlite as sql
+import sqlite3 as sql
 
 
 DATABASE_NAME = 'president_history'
