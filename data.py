@@ -1,5 +1,6 @@
 import sqlite3 as sql
 import pandas as pd
+from typing import Union
 
 
 def load_data(database_name: str) -> None:
@@ -17,3 +18,24 @@ def load_data(database_name: str) -> None:
     pres_df.to_sql('presidents', conn)
     vice_df.to_sql('vice_presidents', conn)
     print('Successfully loaded data into SQLite database.')
+
+
+def basic_query(database_name: str, table: str, column: str, clause: Union[str, int]) -> str:
+    """A basic query for our database that is used on a single table
+
+    Args:
+        database_name (str): the name of the SQLite3 database
+        table (str): table to query from
+        column (str): column to check
+        clause (Union[str, int]): column value we are searching for
+
+    Returns:
+        str: string to be shown to user
+    """
+    conn = sql.connect(f'{database_name}.db')
+    if isinstance(clause, int):
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} = {clause}', conn)
+    else:
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE start >= {clause} AND {clause} < end', conn)
+
+    return queried_data
