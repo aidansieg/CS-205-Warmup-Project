@@ -6,21 +6,19 @@ test5 = "president number 12"
 test6 = "president year 1923"
 test7 = "office number 36"
 test8 = "office year 1919"
+test9 = "president barack-obama number"
 
-#test_usr = input("Search: ")
-t = test8.split(" ")
+t = test9.split(" ")
 
 query_peram = {}
 
 if (t[0] == "president"):
     query_peram["table"] = "presidents"
     query_peram["clause"] = t[1]
-    #query_peram["column"] = "All"
 
 if (t[0] == "vice-president"):
     query_peram["table"] = "vice-presidents"
     query_peram["clause"] = t[1]
-    #query_peram["column"] = "All"
 
 if (t[0] == "office"):
     query_peram["table"] = "Both"
@@ -63,8 +61,8 @@ if (t[1] == "number" and t[0] != "office"):
     query_peram["column"] = "number"
     query_peram["clause"] = t[2]
 
-# if (t[2] == "number"):
-#     query_peram["column"] = "number"
-#     query_peram["clause"] = t[1]
+if (t[2] == "number"):
+    query_peram["column"] = "number"
+    query_peram["clause"] = t[1]
 
 print(query_peram)
