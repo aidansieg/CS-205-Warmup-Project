@@ -34,8 +34,12 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
     """
     conn = sql.connect(f'{database_name}.db')
     if isinstance(clause, int):
-        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} = {clause}', conn)
-    else:
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE start >= {clause} AND {clause} < end', conn)
+    else:
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} = {clause}', conn)
 
     return queried_data
+
+
+def office_query(database_name: str, office_year: int) -> str:
+    pass
