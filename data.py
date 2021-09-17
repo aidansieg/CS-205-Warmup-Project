@@ -20,18 +20,9 @@ def load_data(database_name: str) -> None:
 
 def Input_Parsing(input):
     query_list = input.split(" ")
-    if len(query_list) > 1 and len(query_list) < 4:
+    if len(query_list) != 3:
         if query_list[0] == "president" or query_list[0] == "vice-president" or query_list[0] == "office":
-            if query_list[1] == "year" or query_list[1] == "name" or query_list[1] == "number" or query_list[1] == int:
-                if len(query_list) > 2:
-                    if query_list[2] == "party" or query_list[2] == "vp" or query_list[2] == "p"):
-                        return(input)
-                    else:
-                        print("This input is not accepted")
-                else:
-                    return(input)
-            else:
-                print("This input is not accepted")
+            return(input) # Filler. Change later
         else:
             print("This input is not accepted")
     else:
