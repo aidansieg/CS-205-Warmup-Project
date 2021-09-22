@@ -57,3 +57,12 @@ def office_query(database_name: str, office_year: int) -> str:
     vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where start >= {office_year} AND {office_year} < end', conn)
 
     return president_data, vice_president_data
+def Input_Parsing(input):
+    query_list = input.split(" ")
+    if len(query_list) == 3:
+        if query_list[0] == "president" or query_list[0] == "vice-president" or query_list[0] == "office":
+            return(input) # Filler. Change later
+        else:
+            print("This input is not accepted. Your query should start with president, vice-president, or office.")
+    else:
+        print("This input is not accepted. Your query should exactly be three terms.")
