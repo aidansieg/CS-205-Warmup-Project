@@ -1,4 +1,4 @@
-from data import load_data
+from data import load_data, basic_query, office_query
 import sqlite3 as sql
 
 

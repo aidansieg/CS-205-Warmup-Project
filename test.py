@@ -22,11 +22,11 @@ if (t[0] == "vice-president"):
 
 if (t[0] == "office"):
     query_peram["table"] = "Both"
-    
+
     if (t[1] == "year"):
         query_peram["clause"] = int(t[2])
         query_peram["column"] = "All"
-    
+
     if (t[1] == "number"):
         query_peram["clause"] = t[2]
         query_peram["column"] = "All"
