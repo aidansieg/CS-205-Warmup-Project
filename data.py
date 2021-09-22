@@ -20,10 +20,10 @@ def load_data(database_name: str) -> None:
 
 def Input_Parsing(input):
     query_list = input.split(" ")
-    if len(query_list) != 3:
+    if len(query_list) == 3:
         if query_list[0] == "president" or query_list[0] == "vice-president" or query_list[0] == "office":
             return(input) # Filler. Change later
         else:
-            print("This input is not accepted")
+            print("This input is not accepted. Your query should start with president, vice-president, or office.")
     else:
-        print("This input is not accepted")
+        print("This input is not accepted. Your query should exactly be three terms.")
