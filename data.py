@@ -57,12 +57,75 @@ def office_query(database_name: str, office_year: int) -> str:
     vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where start >= {office_year} AND {office_year} < end', conn)
 
     return president_data, vice_president_data
-def Input_Parsing(input):
-    query_list = input.split(" ")
+
+
+def Input_Parsing(input_str):
+    query_list = input_str.split(" ")
     if len(query_list) == 3:
         if query_list[0] == "president" or query_list[0] == "vice-president" or query_list[0] == "office":
-            return(input) # Filler. Change later
+            return input_str  # Filler. Change later
         else:
             print("This input is not accepted. Your query should start with president, vice-president, or office.")
     else:
         print("This input is not accepted. Your query should exactly be three terms.")
+
+
+def text_to_sql(input_str: str):
+
+    t = input_str.split()
+    query_param = {}
+
+    if (t[0] == "president"):
+        query_param["table"] = "presidents"
+        query_param["clause"] = t[1]
+
+    if (t[0] == "vice-president"):
+        query_param["table"] = "vice-presidents"
+        query_param["clause"] = t[1]
+
+    if (t[0] == "office"):
+        query_param["table"] = "Both"
+
+        if (t[1] == "year"):
+            query_param["clause"] = int(t[2])
+            query_param["column"] = "All"
+
+        if (t[1] == "number"):
+            query_param["clause"] = t[2]
+            query_param["column"] = "All"
+
+    if (t[1] == "year" and t[0] != "office"):
+        query_param["column"] = "year"
+        query_param["clause"] = int(t[2])
+
+    if (t[2] == "year"):
+        query_param["column"] = "year"
+        query_param["clause"] = t[1]
+
+    if (t[1] == "name"):
+        query_param["column"] = "All"
+        query_param["clause"] = t[2]
+
+    if (t[2] == "party"):
+        query_param["column"] = "party"
+        query_param["clause"] = t[1]
+
+    if (t[2] == "vp"):
+        query_param["table"] = "Both"
+        query_param["column"] = "vp for clause"
+        query_param["clause"] = t[1]
+
+    if (t[2] == "p"):
+        query_param["table"] = "Both"
+        query_param["column"] = "p for clause"
+        query_param["clause"] = t[1]
+
+    if (t[1] == "number" and t[0] != "office"):
+        query_param["column"] = "number"
+        query_param["clause"] = t[2]
+
+    if (t[2] == "number"):
+        query_param["column"] = "number"
+        query_param["clause"] = t[1]
+
+    return query_param
