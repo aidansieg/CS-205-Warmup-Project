@@ -11,11 +11,12 @@ if it doesnt we throw an error
 
 NOTE* spaces are denoted by a dash '-'
 
-president year
-president number
-president name (spits out everything)
-president name vp (spit out vp)
-president name party
+president year --> president year 2012
+president number --> president number 15
+president name (spits out everything) --> president president-name
+president name party --> president president-name party
+
+
 vice-president year
 vice-president number
 vice-president name (spits out everything)

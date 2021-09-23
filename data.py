@@ -33,10 +33,25 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
         pd.DataFrame: dataframe of queried data
     """
     conn = sql.connect(f'{database_name}.db')
+    table = table.replace('-', '_')
     if isinstance(clause, int):
-        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE start >= {clause} AND {clause} < end', conn)
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {clause} BETWEEN start AND end', conn)
+    elif column == 'All':
+        clause = clause.replace('-', ' ').title()
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)
+    elif column == 'party':
+        clause = clause.replace('-', ' ').title()
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['party'].values[0]
     else:
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} == {clause}', conn)
+
+    if isinstance(queried_data, pd.DataFrame):
+        try:
+            cols_to_drop = ['index', 'Unnamed: 0']
+            for col in cols_to_drop:
+                queried_data.drop(columns=[col], inplace=True)
+        except:
+            pass
 
     return queried_data
 
