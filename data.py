@@ -42,6 +42,26 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
     elif column == 'party':
         clause = clause.replace('-', ' ').title()
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['party'].values[0]
+    elif column == 'number':
+        clause = clause.replace('-', ' ').title()
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['number'].values[0]
+    elif column == 'year':
+        clause = clause.replace('-', ' ').title()
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['start'].values
+    elif column == 'vp for clause':
+        clause = clause.replace('-', ' ').title()
+        president_df = pd.read_sql(f'SELECT * FROM presidents WHERE name == "{clause}"', conn)
+        start = president_df['start'].values[0]
+        end = president_df['end'].values[0]
+        vp_df = pd.read_sql(f'SELECT * from vice_presidents where start == {start} AND end == {end}', conn)
+        queried_data = vp_df['name'].values[0]
+    elif column == 'p for clause':
+        clause = clause.replace('-', ' ').title()
+        vice_president_df = pd.read_sql(f'SELECT * FROM vice_presidents WHERE name == "{clause}"', conn)
+        start = vice_president_df['start'].values[0]
+        end = vice_president_df['end'].values[0]
+        p_df = pd.read_sql(f'SELECT * from presidents where start == {start} AND end == {end}', conn)
+        queried_data = p_df['name'].values[0]
     else:
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} == {clause}', conn)
 
@@ -56,7 +76,7 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
     return queried_data
 
 
-def office_query(database_name: str, office_year: int) -> str:
+def office_query(database_name: str, office_year_or_number: int) -> str:
     """Queries for the office in a given year.
 
     Args:
@@ -68,10 +88,24 @@ def office_query(database_name: str, office_year: int) -> str:
     """
     conn = sql.connect(f'{database_name}.db')
 
-    president_data = pd.read_sql(f'SELECT * from presidents where {office_year} BETWEEN start AND end', conn)
-    vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where {office_year} BETWEEN start AND end', conn)
+    if len(str(office_year_or_number)) >= 4:
+        president_data = pd.read_sql(f'SELECT * from presidents where {office_year_or_number} BETWEEN start AND end', conn)
+        vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where {office_year_or_number} BETWEEN start AND end', conn)
+    else:
+        president_data = pd.read_sql(f'SELECT * from presidents where number == {office_year_or_number}', conn)
+        vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where number == {office_year_or_number}', conn)
 
-    return [president_data, vice_president_data]
+
+    data = [president_data, vice_president_data]
+    for df in data:
+        try:
+            cols_to_drop = ['index', 'Unnamed: 0']
+            for col in cols_to_drop:
+                data.drop(columns=[col], inplace=True)
+        except:
+            pass
+
+    return data
 
 
 def input_parsing(input_str: str):

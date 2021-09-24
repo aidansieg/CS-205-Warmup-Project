@@ -14,13 +14,15 @@ NOTE* spaces are denoted by a dash '-'
 president year --> president year 2012
 president number --> president number 15
 president name (spits out everything) --> president president-name
-president name party --> president president-name party
+* where name denotes barack-obama or similar
+president name* party --> president president-name party
+president name* party --> president president-name party
+president name* party --> president president-name party
 
 
 vice-president year
 vice-president number
 vice-president name (spits out everything)
-vice-president name p (spit out p)
 vice-president name party
 
 office year
