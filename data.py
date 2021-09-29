@@ -36,7 +36,7 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
     if isinstance(clause, int):
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE start >= {clause} AND {clause} < end', conn)
     else:
-        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} = {clause}', conn)
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {column} == {clause}', conn)
 
     return queried_data
 
@@ -53,15 +53,24 @@ def office_query(database_name: str, office_year: int) -> str:
     """
     conn = sql.connect(f'{database_name}.db')
 
-    president_data = pd.read_sql(f'SELECT * from presidents where start >= {office_year} AND {office_year} < end', conn)
-    vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where start >= {office_year} AND {office_year} < end', conn)
+    president_data = pd.read_sql(f'SELECT * from presidents where {office_year} BETWEEN start AND end', conn)
+    vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where {office_year} BETWEEN start AND end', conn)
 
-    return president_data, vice_president_data
+    return [president_data, vice_president_data]
 
 # Input_Parsing makes sure that the input string (input_str) is three items in length and starts with president, 
 # vice-president, or office
-def Input_Parsing(input_str):
-    # First, the input is split into a list variable 'query_list'
+
+def input_parsing(input_str: str):
+    """Validate that what the suer entered is something the program can use.
+
+    Args:
+        input_str (str): user query
+
+    Returns:
+        Union[str, None]: returns the user input if valid, otherwise None.
+    """
+     # First, the input is split into a list variable 'query_list'
     query_list = input_str.split(" ")
     # Then, query_list is made sure to have a length of 3. If it is longer or shorter, the input is rejected
     if len(query_list) == 3:
@@ -75,9 +84,18 @@ def Input_Parsing(input_str):
     else:
         print("This input is not accepted. Your query should exactly be three terms.")
 
+    return None
 
-def text_to_sql(input_str: str):
 
+def text_to_sql(input_str: str) -> dict:
+    """Turn a validated input string into a dict that can be mapped to SQL.
+
+    Args:
+        input_str (str): validated user input
+
+    Returns:
+        dict: dict of key value pairs to be used in SQL query
+    """
     t = input_str.split()
     query_param = {}
 
