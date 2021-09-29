@@ -46,3 +46,12 @@ if the user query is `president year 2012`
 we search that string and see that the user requests the president in the year 2012
 we would then parse out a dict of `{'table': 'presidents', 'column': 'year', 'clause': 2012}` (interface) *subject to change
 which translates to a SQL query (in our case) of `SELECT * FROM presidents WHERE start >= 2012 AND 2012 < end`
+
+
+
+for presenting: \
+president year 2012 \
+president barack-obama party \
+office number 15 \
+office year 1956 \
+vice-president name al-gore \
