@@ -34,10 +34,13 @@ def main():
                     data = office_query(DATABASE_NAME, query_structure['clause'])
 
                 for d in data:
-                    if isinstance(d, pd.DataFrame):
-                        print(tabulate(d, headers='keys', tablefmt='psql', showindex=False))
+                    if len(d) > 1:
+                        if isinstance(d, pd.DataFrame):
+                            print(tabulate(d, headers='keys', tablefmt='psql', showindex=False))
+                        else:
+                            print(d)
                     else:
-                        print(d)
+                        raise(KeyError)
             except KeyError:
                 print(f'Something went wrong with query {query}. Resulted in structure {query_structure} which could not be parsed.')
                 pass
