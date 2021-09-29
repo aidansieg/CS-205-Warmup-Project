@@ -45,7 +45,7 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['party'].values[0]
     elif column == 'number':
         clause = clause.replace('-', ' ').title()
-        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['number'].values[0]
+        queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE number == "{clause}"', conn)
     elif column == 'year':
         clause = clause.replace('-', ' ').title()
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE name == "{clause}"', conn)['start'].values

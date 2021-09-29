@@ -19,16 +19,13 @@ def main():
 
     done = False
     while not done:
-
         query = input('Please enter a query: ')
         if input_parsing(query) is not None:
             query_structure = text_to_sql(query)
 
             try:
                 if 'clause' in query_structure.keys():
-                    print('here')
-                    print(int(query_structure['clause']))
-                    if not (EARLIEST_YEAR < int(query_structure['clause']) < LATEST_YEAR):
+                    if not (EARLIEST_YEAR < int(query_structure['clause']) < LATEST_YEAR) and len(query_structure['clause']) == 4:
                         raise(KeyError)
 
                 if query_structure['table'] != 'Both' or 'p for clause' in query_structure['column']:
