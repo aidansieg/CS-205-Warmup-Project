@@ -11,19 +11,18 @@ if it doesnt we throw an error
 
 NOTE* spaces are denoted by a dash '-'
 
-president year
-president number
-president name (spits out everything)
-president name vp (spit out vp)
-president name party
-vice-president year
-vice-president number
-vice-president name (spits out everything)
-vice-president name p (spit out p)
-vice-president name party
+president year --> president year 2012 \
+president number --> president number 15 \
+president name (spits out everything) --> president president-name \
+* where name denotes barack-obama or similar \
+president name* party --> president president-name party \
+president name* party --> president president-name party \
+president name* party --> president president-name party \
 
-office year
-office number
+And the same goes for vice-presidents, just replace president with vice-president to get the same functionality \
+
+office year --> office year 1977
+office number --> office number 24
 
 examples: (return values are all strings in console output)
 
@@ -47,3 +46,16 @@ if the user query is `president year 2012`
 we search that string and see that the user requests the president in the year 2012
 we would then parse out a dict of `{'table': 'presidents', 'column': 'year', 'clause': 2012}` (interface) *subject to change
 which translates to a SQL query (in our case) of `SELECT * FROM presidents WHERE start >= 2012 AND 2012 < end`
+
+
+
+for presenting: \
+president year 2012 \
+president barack-obama party \
+office number 15 \
+office year 1956 \
+vice-president name al-gore \
+
+bad-queries: \
+president year hello \
+presnt year 2012 \
