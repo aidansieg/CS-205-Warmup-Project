@@ -1,4 +1,4 @@
-from data import load_data, basic_query, office_query, Input_Parsing, text_to_sql
+from data import load_data, basic_query, office_query, input_parsing, text_to_sql
 import sqlite3 as sql
 
 
@@ -14,7 +14,7 @@ def main():
     done = False
     while not done:
         query = input('Please enter a query: ')
-        if Input_Parsing(query) is not None:
+        if input_parsing(query) is not None:
             query_structure = text_to_sql(query)
             print(query_structure)
 
