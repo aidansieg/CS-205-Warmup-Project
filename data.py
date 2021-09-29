@@ -34,6 +34,7 @@ def basic_query(database_name: str, table: str, column: str, clause: Union[str, 
     """
     conn = sql.connect(f'{database_name}.db')
     table = table.replace('-', '_')
+
     if isinstance(clause, int):
         queried_data = pd.read_sql(f'SELECT * FROM {table} WHERE {clause} BETWEEN start AND end', conn)
     elif column == 'All':
@@ -94,7 +95,6 @@ def office_query(database_name: str, office_year_or_number: int) -> str:
     else:
         president_data = pd.read_sql(f'SELECT * from presidents where number == {office_year_or_number}', conn)
         vice_president_data = pd.read_sql(f'SELECT * from vice_presidents where number == {office_year_or_number}', conn)
-
 
     data = [president_data, vice_president_data]
     for df in data:
