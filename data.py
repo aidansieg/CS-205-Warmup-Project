@@ -58,12 +58,18 @@ def office_query(database_name: str, office_year: int) -> str:
 
     return president_data, vice_president_data
 
-
+# Input_Parsing makes sure that the input string (input_str) is three items in length and starts with president, 
+# vice-president, or office
 def Input_Parsing(input_str):
+    # First, the input is split into a list variable 'query_list'
     query_list = input_str.split(" ")
+    # Then, query_list is made sure to have a length of 3. If it is longer or shorter, the input is rejected
     if len(query_list) == 3:
+        # The first element of the query_list is checked to make sure it is either president, vice-president, or office
         if query_list[0] == "president" or query_list[0] == "vice-president" or query_list[0] == "office":
-            return input_str  # Filler. Change later
+            # If both of the above if statements return true, then input_str is returned
+            return input_str
+    # If either of the if statements above return false, the input will be rejected and an explanation as to why is be given
         else:
             print("This input is not accepted. Your query should start with president, vice-president, or office.")
     else:
