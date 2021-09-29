@@ -21,9 +21,10 @@ def main():
     while not done:
         query = input('Please enter a query: ')
         if input_parsing(query) is not None:
-            query_structure = text_to_sql(query)
 
             try:
+                query_structure = text_to_sql(query)
+
                 if 'clause' in query_structure.keys():
                     if len(str(query_structure['clause'])) < 4:
                         if not (EARLIEST_YEAR < int(query_structure['clause']) < LATEST_YEAR) and len(str(query_structure['clause'])) == 4:
@@ -43,12 +44,16 @@ def main():
                     else:
                         print(d)
 
-            except KeyError:
-                print(f'Something went wrong with query {query}. Resulted in structure {query_structure} which could not be parsed.')
+            except (KeyError, ValueError) as e:
+                try:
+                    print(f'Something went wrong with query {query}. Resulted in structure {query_structure} which could not be parsed.')
+                except UnboundLocalError:
+                    print(f'Something went wrong with query {query}')
+                    pass
                 pass
 
-
             again = input('Would you like to query again? (Y/n): ')
+
             if again.lower() != 'y':
                 done = True
 

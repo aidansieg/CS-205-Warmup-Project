@@ -101,8 +101,8 @@ def office_query(database_name: str, office_year_or_number: int) -> str:
         try:
             cols_to_drop = ['index', 'Unnamed: 0']
             for col in cols_to_drop:
-                data.drop(columns=[col], inplace=True)
-        except:
+                df.drop(columns=[col], inplace=True)
+        except Exception as e:
             pass
 
     return data
