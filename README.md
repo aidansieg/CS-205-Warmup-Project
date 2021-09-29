@@ -55,3 +55,7 @@ president barack-obama party \
 office number 15 \
 office year 1956 \
 vice-president name al-gore \
+
+bad-queries: \
+president year hello \
+presnt year 2012 \
