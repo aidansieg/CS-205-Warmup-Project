@@ -19,6 +19,7 @@ def main():
 
     done = False
     while not done:
+
         query = input('Please enter a query: ')
         if input_parsing(query) is not None:
             query_structure = text_to_sql(query)
@@ -45,7 +46,7 @@ def main():
                 pass
 
 
-            again = input('Would you like to query again? (Y/n) ')
+            again = input('Would you like to query again? (Y/n): ')
             if again.lower() != 'y':
                 done = True
 
