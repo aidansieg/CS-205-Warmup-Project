@@ -25,8 +25,9 @@ def main():
 
             try:
                 if 'clause' in query_structure.keys():
-                    if not (EARLIEST_YEAR < int(query_structure['clause']) < LATEST_YEAR) and len(query_structure['clause']) == 4:
-                        raise(KeyError)
+                    if len(str(query_structure['clause'])) < 4:
+                        if not (EARLIEST_YEAR < int(query_structure['clause']) < LATEST_YEAR) and len(str(query_structure['clause'])) == 4:
+                            raise(KeyError)
 
                 if query_structure['table'] != 'Both' or 'p for clause' in query_structure['column']:
                     data = [basic_query(DATABASE_NAME, query_structure['table'], query_structure['column'], query_structure['clause'])]
@@ -34,13 +35,14 @@ def main():
                     data = office_query(DATABASE_NAME, query_structure['clause'])
 
                 for d in data:
-                    if len(d) > 1:
-                        if isinstance(d, pd.DataFrame):
+                    if isinstance(d, pd.DataFrame):
+                        if len(d) > 0:
                             print(tabulate(d, headers='keys', tablefmt='psql', showindex=False))
                         else:
-                            print(d)
+                            print(f'Data could not be found in database. {query_structure}')
                     else:
-                        raise(KeyError)
+                        print(d)
+
             except KeyError:
                 print(f'Something went wrong with query {query}. Resulted in structure {query_structure} which could not be parsed.')
                 pass
