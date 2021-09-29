@@ -20,7 +20,6 @@ def main():
         query = input('Please enter a query: ')
         if input_parsing(query) is not None:
             query_structure = text_to_sql(query)
-            print(query_structure)
 
             if query_structure['table'] != 'Both' or 'p for clause' in query_structure['column']:
                 data = [basic_query(DATABASE_NAME, query_structure['table'], query_structure['column'], query_structure['clause'])]

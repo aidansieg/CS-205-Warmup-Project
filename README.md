@@ -11,22 +11,18 @@ if it doesnt we throw an error
 
 NOTE* spaces are denoted by a dash '-'
 
-president year --> president year 2012
-president number --> president number 15
-president name (spits out everything) --> president president-name
-* where name denotes barack-obama or similar
-president name* party --> president president-name party
-president name* party --> president president-name party
-president name* party --> president president-name party
+president year --> president year 2012 \
+president number --> president number 15 \
+president name (spits out everything) --> president president-name \
+* where name denotes barack-obama or similar \
+president name* party --> president president-name party \
+president name* party --> president president-name party \
+president name* party --> president president-name party \
 
+And the same goes for vice-presidents, just replace president with vice-president to get the same functionality \
 
-vice-president year
-vice-president number
-vice-president name (spits out everything)
-vice-president name party
-
-office year
-office number
+office year --> office year 1977
+office number --> office number 24
 
 examples: (return values are all strings in console output)
 
